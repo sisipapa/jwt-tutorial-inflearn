@@ -37,22 +37,12 @@ public class UserController {
         return ResponseEntity.ok(userService.signup(userDto));
     }
 
-    /**
-     * 111수정
-     * @param request
-     * @return
-     */
     @GetMapping("/user")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<UserDto> getMyUserInfo(HttpServletRequest request) {
         return ResponseEntity.ok(userService.getMyUserWithAuthorities());
     }
 
-    /**
-     * 222수정
-     * @param username
-     * @return
-     */
     @GetMapping("/user/{username}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<UserDto> getUserInfo(@PathVariable String username) {
